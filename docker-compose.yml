@@ -59,9 +59,12 @@ services:
       - ./config/opencloud/csp.yaml:/etc/opencloud/csp.yaml
       - ./config/opencloud/banned-password-list.txt:/etc/opencloud/banned-password-list.txt
       # configure the .env file to use own paths instead of docker internal volumes
-      - ${OC_CONFIG_DIR:-}:/etc/opencloud
-      - ${OC_DATA_DIR:-}:/var/lib/opencloud
-      - ${OC_APPS_DIR:-}:/var/lib/opencloud/web/assets/apps
+      #- ${OC_CONFIG_DIR:-}:/etc/opencloud
+      #- ${OC_DATA_DIR:-}:/var/lib/opencloud
+      #- ${OC_APPS_DIR:-}:/var/lib/opencloud/web/assets/apps
+      - opencloud-config:/etc/opencloud
+      - opencloud-data:/var/lib/opencloud
+      - apps:/var/lib/opencloud/web/assets/apps
     logging:
       driver: ${LOG_DRIVER:-local}
     restart: unless-stopped
